@@ -2,6 +2,7 @@
 #include <Wire.h>
 
 byte x = 0;
+int bob = 5;
 
 void sendData(int addr, int data) {
   Wire.beginTransmission(addr);
