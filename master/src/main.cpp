@@ -1,8 +1,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 
-byte x = 0;
-int bob = 5;
+byte x = 1;
 
 void sendData(int addr, int data) {
   Wire.beginTransmission(addr);
