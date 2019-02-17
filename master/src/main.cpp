@@ -10,8 +10,6 @@ void sendData(int addr, int data) {
   Wire.beginTransmission(addr);
   Wire.write(data);
   Wire.endTransmission();
-  lcd.setCursor(0, 0);
-  lcd.print(data);
 }
 
 void setup() {
@@ -26,4 +24,12 @@ void loop() {
     String temp = Serial.readString();
     sendData((int)temp.charAt(0)-48, (int)temp.charAt(2)-48);
   }
+}
+
+void sendData(int addr, int data) {
+  Wire.beginTransmission(addr);
+  Wire.write(data);
+  Wire.endTransmission();
+  lcd.setCursor(0, 0);
+  lcd.print(data);
 }
