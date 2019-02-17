@@ -4,16 +4,18 @@
 #include <utility/Adafruit_MCP23017.h>
 
 Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
-byte x = 0;
 
-void sendData(char addr, char data) {
+char destinationAddress;
+char destinationMessage;
+
+void sendData() {
   Serial.print("Sending: ");
-  Serial.println(addr + " " + data);
-  Wire.beginTransmission(addr);
-  Wire.write(data);
+  Serial.println(destinationAddress + " " + destinationMessage);
+  Wire.beginTransmission(destinationAddress);
+  Wire.write(destinationMessage);
   Wire.endTransmission();
   lcd.setCursor(0, 0);
-  lcd.print(data);
+  lcd.print(destinationMessage);
 }
 
 void setup() {
@@ -26,7 +28,8 @@ void setup() {
 void loop() {
   if (Serial.available() > 0) {
     String temp = Serial.readString();
-    Serial.println(temp);
-    sendData((temp.charAt(0), temp.charAt(2));
+    destinationAddress = temp.charAt(0);
+    destinationMessage = temp.charAt(2);
+    sendData();
   }
 }
