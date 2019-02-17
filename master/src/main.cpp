@@ -1,26 +1,29 @@
 #include <Arduino.h>
 #include <Wire.h>
+#include <Adafruit_RGBLCDShield.h>
+#include <utility/Adafruit_MCP23017.h>
 
-byte x = 1;
-int bob = 5;
-int jerry = 7;
+Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
+byte x = 0;
 
 void sendData(int addr, int data) {
   Wire.beginTransmission(addr);
   Wire.write(data);
   Wire.endTransmission();
+  lcd.setCursor(0, 0);
+  lcd.print(data);
 }
 
 void setup() {
   Serial.begin(9600);
   Wire.begin(); // join i2c bus (address optional for master)
+  lcd.begin(16, 2);
+  lcd.setBacklight(0x7);
 }
 
 void loop() {
   if (Serial.available() > 0) {
     String temp = Serial.readString();
-    sendData((int)temp.charAt(0)-48, (int)temp.charAt(3)-48);
-    Serial.println((int)temp.charAt(0)-48);
-    Serial.println((int)temp.charAt(2)-48);
+    sendData((int)temp.charAt(0)-48, (int)temp.charAt(2)-48);
   }
 }
