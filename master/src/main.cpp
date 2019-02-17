@@ -8,6 +8,8 @@ Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
 byte x = 0;
 
 void sendData(int addr, int data) {
+  Serial.print("Sending: ");
+  Serial.println(addr + " " + data);
   Wire.beginTransmission(addr);
   Wire.write(data);
   Wire.endTransmission();
