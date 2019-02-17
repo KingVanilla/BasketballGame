@@ -26,6 +26,7 @@ void setup() {
 void loop() {
   if (Serial.available() > 0) {
     String temp = Serial.readString();
+    Serial.println(temp);
     sendData((int)temp.charAt(0)-48, (int)temp.charAt(2)-48);
   }
 }
