@@ -13,9 +13,11 @@ void sendData() {
   Serial.print(destinationAddress);
   Serial.print(" ");
   Serial.println(destinationMessage);
-  Wire.beginTransmission(destinationAddress);
+
+  Wire.beginTransmission((int)destinationAddress);
   Wire.write(destinationMessage);
   Wire.endTransmission();
+  
   lcd.setCursor(0, 0);
   lcd.print(destinationMessage);
 }
