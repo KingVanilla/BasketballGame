@@ -10,7 +10,9 @@ char destinationMessage;
 
 void sendData() {
   Serial.print("Sending: ");
-  Serial.println(destinationAddress + " " + destinationMessage);
+  Serial.print(destinationAddress);
+  Serial.print(" ");
+  Serial.println(destinationMessage);
   Wire.beginTransmission(destinationAddress);
   Wire.write(destinationMessage);
   Wire.endTransmission();
